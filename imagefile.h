@@ -47,6 +47,8 @@ class ImageFile
 	bool GetIncluded();
 	ImageFile *NextImage();
 	ImageFile *PrevImage();
+	char *DestFilename(const char *destdir);
+	bool DestExists(const char *destdir);
 	enum ImageFileStatus Copy(const char *destdir,ImageCopyStats *stats=NULL);
 	long GetFileSize();
 	protected:

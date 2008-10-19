@@ -157,11 +157,11 @@ ImageFile *ImageFile::PrevImage()
 }
 
 
-enum ImageFileStatus ImageFile::Copy(const char *destdir,ImageCopyStats *stats)
+char *ImageFile::DestFilename(const char *destdir)
 {
-	enum ImageFileStatus result=IFS_COPIED;
-	const char *fn=filename;
-	int n=strlen(fn)-1;
+	char *destfilename=NULL;
+	const char *fn=this->filename;
+	int n=strlen(filename)-1;
 	while(n>0)
 	{
 		if(fn[n]==PATH_SEPARATOR)
@@ -171,11 +171,30 @@ enum ImageFileStatus ImageFile::Copy(const char *destdir,ImageCopyStats *stats)
 	if(n>0)
 		fn+=n+1;
 
-	char *dfn=(char *)malloc(strlen(fn)+strlen(destdir)+3);
-	sprintf(dfn,"%s%c%s",destdir,PATH_SEPARATOR,fn);
+	destfilename=(char *)malloc(strlen(fn)+strlen(destdir)+3);
+	sprintf(destfilename,"%s%c%s",destdir,PATH_SEPARATOR,fn);
+	return(destfilename);
+}
+
+
+bool ImageFile::DestExists(const char *destdir)
+{
+	bool result=false;
+	struct stat statbuf;
+	char *dfn=DestFilename(destdir);
+	result=(stat(dfn,&statbuf)==0);
+	free(dfn);
+	return(result);
+}
+
+
+enum ImageFileStatus ImageFile::Copy(const char *destdir,ImageCopyStats *stats)
+{
+	enum ImageFileStatus result=IFS_COPIED;
+	char *dfn=DestFilename(destdir);
 
 	struct stat statbuf;
-	if(stat(dfn,&statbuf)==0)
+	if(DestExists(destdir))
 	{
 		result=IFS_SKIPPED;
 		if(stats)
