@@ -33,6 +33,7 @@ struct _FileExtEditorClass
 
 GType fileexteditor_get_type (void);
 GtkWidget* fileexteditor_new (const char *heading="");
+// Returns a newly-allocated string which the caller should g_free() later.
 char *fileexteditor_getextstring(FileExtEditor *ee);
 void fileexteditor_setextstring(FileExtEditor *ee,const char *exts);
 

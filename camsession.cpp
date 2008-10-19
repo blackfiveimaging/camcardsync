@@ -13,13 +13,6 @@
 using namespace std;
 
 
-#ifdef WIN32
-#define PATH_SEPARATOR '\\'
-#else
-#define PATH_SEPARATOR '/'
-#endif
-
-
 CamSession::CamSession(CamSessionList *header,DayStamp &stamp)
 	: ImageFileHeader(), DayStamp(stamp), included(true),
 	header(header),next(NULL),prev(NULL)
@@ -57,12 +50,11 @@ enum ImageFileStatus CamSession::Copy(const char *destdir,ImageCopyStats *stats,
 {
 	if(!included)
 		return(IFS_SKIPPED);
-	const char *dn=GetDirName();
-	char *dir=(char *)malloc(strlen(destdir)+strlen(dn)+3);
-	sprintf(dir,"%s%c%s",destdir,PATH_SEPARATOR,dn);
+	char *dir=GetDestDirName(destdir);
 
 	if(p)
 	{
+		const char *dn=GetDirName();
 		char *message=(char *)malloc(strlen("Copying files from ...")+strlen(dn)+3);
 		sprintf(message,"Copying files from %s...",dn);
 		p->SetMessage(message);
@@ -95,6 +87,48 @@ void CamSession::SetIncluded(bool inc)
 }
 
 
+bool CamSession::SetIncludedDefault(const char *destdir)
+{
+	// We use the following heuristic for deciding whether a camsession should be included by default
+	// * If a destination directory for this session doesn't exist, we include the session.
+    // * If the directory does exist, but none of the files in this session exist,
+	//   we include it.  This catches the case where another cardfull of images from the same date
+	//   has already been synced.
+	// * If the directory does exist, but some or all of the files in this session exist,
+	//   we don't include it.  This catches the case where this session has been synced before but
+	//   the user has already gone through and deleted or moved some of the images.  This fails if the
+	//   user syncs a card then takes more images on the same day on the same card - but this is only
+	//   a default, which the user can over-ride.
+
+	char *dir=GetDestDirName(destdir);
+	struct stat statbuf;
+	if(stat(dir,&statbuf)!=0)
+	{
+		cerr << "Directory " << dir << " not found - including in sync" << endl;
+		included=true;
+	}
+	else
+	{
+		cerr << "Directory " << dir << " exists - checking contents..." << endl;
+		included=false;
+		// check to see if none of the files in this session already exist.
+		switch(TestExistence(dir))
+		{
+			case IFE_NONEXISTENT:
+				included=true;
+				break;
+			case IFE_EXISTENT:
+			case IFE_PARTIAL:
+			default:
+				included=false;
+				break;
+		}
+	}
+	free(dir);
+	return(included);
+}
+
+
 bool CamSession::GetIncluded()
 {
 	return(included);
@@ -112,6 +146,17 @@ CamSessionList::~CamSessionList()
 {
 	while(firstday)
 		delete firstday;
+}
+
+
+void CamSessionList::SetIncludedDefaults(const char *destdir)
+{
+	CamSession *s=FirstDay();
+	while(s)
+	{
+		s->SetIncludedDefault(destdir);
+		s=s->NextDay();
+	}
 }
 
 

@@ -6,6 +6,7 @@
 class ImageFile;
 
 enum ImageFileStatus {IFS_COPIED,IFS_SKIPPED,IFS_CANCELLED,IFS_ERROR};
+enum ImageFileExistence {IFE_EXISTENT,IFE_PARTIAL,IFE_NONEXISTENT,IFE_ERROR};
 
 class ImageCopyStats
 {
@@ -27,6 +28,7 @@ class ImageFileHeader
 	virtual ~ImageFileHeader();
 	ImageFile *FirstImage();
 	virtual void AddFile(const char *filename);
+	virtual enum ImageFileExistence TestExistence(const char *destdir);
 	virtual enum ImageFileStatus Copy(const char *destdir,ImageCopyStats *stats=NULL, Progress *p=NULL);
 	long GetFileSize();
 	int GetFileCount();

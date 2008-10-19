@@ -232,7 +232,9 @@ char *fileexteditor_getextstring(FileExtEditor *ob)
 
 	int outlen=2;
 
-	gtk_tree_model_get_iter_first(GTK_TREE_MODEL (model), &iter);
+	if(!gtk_tree_model_get_iter_first(GTK_TREE_MODEL (model), &iter))
+		return(g_strdup(""));
+
 	do
 	{
 		gtk_tree_model_get (GTK_TREE_MODEL(model), &iter, COLUMN_EXT, &exttext, -1);
@@ -243,7 +245,7 @@ char *fileexteditor_getextstring(FileExtEditor *ob)
 		}
 	} while(gtk_tree_model_iter_next(GTK_TREE_MODEL(model),&iter));
 
-	char *result=(char *)malloc(outlen);
+	char *result=(char *)g_malloc(outlen);
 	result[0]=0;
 	char *outstr=result;
 	gtk_tree_model_get_iter_first(GTK_TREE_MODEL (model), &iter);

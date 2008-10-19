@@ -79,6 +79,53 @@ enum ImageFileStatus ImageFileHeader::Copy(const char *destdir,ImageCopyStats *s
 }
 
 
+// Returns IFE_EXISTENT if all the files under this ImageHeader already exist in destdir,
+// IFE_NONEXISTENT if none of them do, and
+// IFE_PARTIAL if some of them do.
+enum ImageFileExistence ImageFileHeader::TestExistence(const char *destdir)
+{
+	enum ImageFileExistence state=IFE_ERROR;
+
+	ImageFile *im=FirstImage();
+	while(im)
+	{
+		if(im->DestExists(destdir))
+		{
+			if(state==IFE_ERROR)
+				state=IFE_EXISTENT;
+			else
+				if(state==IFE_NONEXISTENT)
+					state=IFE_PARTIAL;
+		}
+		else
+		{
+			if(state==IFE_ERROR)
+				state=IFE_NONEXISTENT;
+			else
+				if(state==IFE_EXISTENT)
+					state=IFE_PARTIAL;
+		}
+		im=im->NextImage();
+	}
+	switch(state)
+	{
+		case IFE_ERROR:
+			cerr << "Scan of " << destdir << " failed" << endl;
+			break;
+		case IFE_EXISTENT:
+			cerr << "Files in " << destdir << " already exist" << endl;
+			break;
+		case IFE_NONEXISTENT:
+			cerr << "No files in " << destdir << " already exist" << endl;
+			break;
+		case IFE_PARTIAL:
+			cerr << "Some files in " << destdir << " already exist" << endl;
+			break;
+	}
+	return(state);
+}
+
+
 long ImageFileHeader::GetFileSize()
 {
 	// Return total file sizes in kb
@@ -193,7 +240,6 @@ enum ImageFileStatus ImageFile::Copy(const char *destdir,ImageCopyStats *stats)
 	enum ImageFileStatus result=IFS_COPIED;
 	char *dfn=DestFilename(destdir);
 
-	struct stat statbuf;
 	if(DestExists(destdir))
 	{
 		result=IFS_SKIPPED;

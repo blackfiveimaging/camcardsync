@@ -317,6 +317,9 @@ void MainWindow::PopulateList()
 {
 	GtkTreeIter iter;
 	/* add data to the tree store */
+	const char *destdir=sessionlist->FindString("DestPath");
+	sessionlist->SetIncludedDefaults(destdir);
+	
 	CamSession *s=sessionlist->FirstDay();
 	while (s)
     {
@@ -328,9 +331,10 @@ void MainWindow::PopulateList()
 		sprintf(infostring,fmt,mbc2,fc,(fc==1) ? ' ':'s');
 		
 		cerr << infostring << endl;
+
 		gtk_tree_store_append (GTK_TREE_STORE(model), &iter, NULL);
 		gtk_tree_store_set (GTK_TREE_STORE(model), &iter,
-			ACTIVE_COLUMN, FALSE,
+			ACTIVE_COLUMN, s->GetIncluded(),
 			LABEL_COLUMN, s->GetDirName(),
 			INFO_COLUMN, infostring,
 			TRUE_COLUMN, TRUE,
@@ -344,19 +348,21 @@ void MainWindow::PopulateList()
 
 void MainWindow::SetSourceDir(const char *srcdir)
 {
-	if(!srcdir)
+	if(src)
+		free(src);
+
+	if(srcdir)
+		src=strdup(srcdir);
+	else
 	{
 		srcdir=sessionlist->FindString("DefaultSourcePath");
 		// If the default path doesn't exist, use a current dir instead.
 		struct stat statbuf;
 		if(stat(srcdir,&statbuf)!=0)
-			srcdir=g_get_current_dir();
-		// FIXME - this needs to be freed...
+			src=g_get_current_dir();
+		else
+			src=strdup(srcdir);
 	}
-
-	if(src)
-		free(src);
-	src=strdup(srcdir);
 
 	cerr << "Setting path to: " << src << endl;
 

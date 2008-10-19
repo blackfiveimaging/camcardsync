@@ -17,6 +17,7 @@ class CamSessionList : public FileExtHeader, public ExclusionHeader, public Conf
 	~CamSessionList();
 	bool AddPath(const char *srcdir,Progress *p=NULL);
 	void AddFile(const char *filename);
+	void SetIncludedDefaults(const char *destdir);
 	enum ImageFileStatus Copy(const char *dstdir,ImageCopyStats *stats=NULL,Progress *p=NULL);
 	CamSession *FindDay(DayStamp &ds);
 	CamSession *FirstDay();
@@ -35,8 +36,9 @@ class CamSession : public ImageFileHeader, public DayStamp
 	public:
 	CamSession(CamSessionList *header,DayStamp &stamp);
 	virtual ~CamSession();
-	void SetIncluded(bool included);
 	bool GetIncluded();
+	void SetIncluded(bool included);
+	bool SetIncludedDefault(const char *destdir);
 	virtual enum ImageFileStatus Copy(const char *dstdir,ImageCopyStats *stats=NULL,Progress *p=NULL);
 	CamSession *NextDay();
 	CamSession *PrevDay();

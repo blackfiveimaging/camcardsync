@@ -1,5 +1,13 @@
 Changes for 0.1.1
 
+*	Is now smarter about which "sessions" are checkmarked by default:
+	If a target directory for the given date doesn't already exist, the
+	session will be checkmarked.
+	If a target directory already exists, but none of the files in the 
+	session already exists, the session will be checkmarked.
+	If the target directory already exists and some or all of the files
+	already exist, the session will not be checkmarked.
+
 *	Added an exclusion list.  Allows the user to specify a list of folder
 	names which will be ignored when building the list of files.
 	Useful if you wish to set the CamCardSync source directory to /media

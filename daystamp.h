@@ -6,6 +6,12 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
+#ifdef WIN32
+#define PATH_SEPARATOR '\\'
+#else
+#define PATH_SEPARATOR '/'
+#endif
+
 class DayStamp
 {
 	public:
@@ -53,6 +59,12 @@ class DayStamp
 	const char *GetDirName()
 	{
 		return(dirname);
+	}
+	char *GetDestDirName(const char *destdir)
+	{
+		char *dir=(char *)malloc(strlen(destdir)+strlen(dirname)+3);
+		sprintf(dir,"%s%c%s",destdir,PATH_SEPARATOR,dirname);
+		return(dir);
 	}
 	char *GetDisplayName()
 	{
