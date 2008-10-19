@@ -12,3 +12,6 @@ config.log
 config.status.lineno
 autom4te.cache
 
+stamp-h1
+camcardsync
+config.status
