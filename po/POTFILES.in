@@ -1,0 +1,13 @@
+# List of source files which contain translatable strings.
+
+camcardsync.cpp
+camsession.cpp
+configdb.cpp
+fileext.cpp
+fileexteditor.cpp
+imagefile.cpp
+halgetmountpoint.cpp
+mainwindow.cpp
+pathsupport.cpp
+prefsdialog.cpp
+progressbar.cpp

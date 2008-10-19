@@ -1,0 +1,6 @@
+autoscan-2.5x: warning: missing AC_FUNC_CLOSEDIR_VOID wanted by: 
+	dirtest.cpp:31
+autoscan-2.5x: warning: missing AC_HEADER_DIRENT wanted by: 
+	dirtest.cpp:6
+autoscan-2.5x: warning: missing AC_STRUCT_TM wanted by: 
+	dirtest.cpp:55

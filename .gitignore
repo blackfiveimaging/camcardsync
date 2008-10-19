@@ -1,0 +1,14 @@
+*.o
+*.Po
+*.Plo
+*.lo
+*.la
+*~
+*Makefile
+*.libs
+*.gz
+po/remove-potcdate.sed
+config.log
+config.status.lineno
+autom4te.cache
+

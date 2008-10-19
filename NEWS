@@ -1,0 +1,9 @@
+Changes for 0.1.1
+
+*	Added an exclusion list.  Allows the user to specify a list of folder
+	names which will be ignored when building the list of files.
+	Useful if you wish to set the CamCardSync source directory to /media
+	but exclude CD rom drives, etc.
+
+*	Now only the most recently shot session will be checked by default.
+

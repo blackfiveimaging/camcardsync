@@ -1,0 +1,5 @@
+2007-05-27  gettextize  <bug-gnu-gettext@gnu.org>
+
+	* configure.ac (AC_CONFIG_FILES): Add po/Makefile.in.
+	(AM_GNU_GETTEXT_VERSION): Bump to 0.11.5.
+

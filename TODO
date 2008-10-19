@@ -1,0 +1,57 @@
+
+Need to create some heuristic for automatically checking checkboxes based on whether
+a target directory of the appropriate name already exists.
+Perhaps better would be to scan the target directory if it exists and check whether any of
+the files within that session already exist - if so, assume that these files have been
+transferred and sorted, and some deleted.  If none of the files in that session exist,
+assume that photos for that date came from another card, so this one should be synced.
+
+
+
+Need a utility to ease the transfer of images from a camera card to a hard-drive directory.
+
+Need the following features:
+
+/ * Must be able to scan recursively the source directory and make a list of files,
+/  including their timestamps.
+
+
+/ * Must create directories in a specified target location for each date, and
+/   copy the files created on that day to that directory.
+
+/ * Need a binary copy routine
+
+/ * Need some kind of progress callback.  Already have a routine to count the images;
+/   Need to increment a "current image" counter somewhere.
+
+
+Need to match the provided directory against "/org/freedesktop/Hal/" and if
+matching, use the hal querying commands to fetch the mount-point.
+This will obviate the need for a bootstrap script and allow camcardsync
+to be used directly with GNOME.
+(Gnome has since changed - nautilus now spawns a program to handle removable media
+and it seems your choice is now f-spot or nothing. :( )
+
+Config database needed with the following options:
+* File extensions
+* Destination path
+* Default source path (over-ridden if provided on command line)
+
+UI:
+
+* Create some command line options - including --destination for output dir.
+
+* Must present a list of dates to the user, with a checkbox alongside each one
+
+* Must allow each datewise collection to be previewed.  However, reading of
+  thumbnails, etc. must not be triggered until they're requested - avoid unneccesary
+  reads over USB 1.1
+
+* Must allow the user to set file extensions to be matched.
+
+* Must allow destination directory to be set.
+
+
+How about alternative backends?  Mtools?  Gphoto?
+
+
