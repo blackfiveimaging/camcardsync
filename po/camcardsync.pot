@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: camcardsync 0.1.1\n"
 "Report-Msgid-Bugs-To: blackfive@fakenhamweb.co.uk\n"
-"POT-Creation-Date: 2008-09-23 20:11+0100\n"
+"POT-Creation-Date: 2009-03-23 22:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,16 +56,16 @@ msgstr ""
 msgid "Copy files to: "
 msgstr ""
 
-#: mainwindow.cpp:323
+#: mainwindow.cpp:326
 #, c-format
 msgid "%.1f megabytes in %d image%c"
 msgstr ""
 
-#: mainwindow.cpp:394
+#: mainwindow.cpp:400
 msgid "Copying files..."
 msgstr ""
 
-#: mainwindow.cpp:402
+#: mainwindow.cpp:408
 #, c-format
 msgid ""
 "Copied %.1f mb in %d files.\n"

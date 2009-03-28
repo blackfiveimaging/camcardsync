@@ -39,14 +39,14 @@ camcardsync_SOURCES = 		\
 	progressbar.h
 
 camcardsync_LDADD = \
-	$(LIBINTL) $(LIBM_LIBS) $(GETOPT_LIBS) $(JPEG_LIBS) $(PNM_LIBS) $(TIFF_LIBS) $(LCMS_LIBS) $(GP_LIBS) $(GTK2_LIBS) $(HAL_LIBS)
+	$(LIBINTL) $(LIBM_LIBS) $(GETOPT_LIBS) $(JPEG_LIBS) $(PNM_LIBS) $(TIFF_LIBS) $(LCMS_LIBS) $(GTK2_LIBS) $(HAL_LIBS)
 
 
-#desktopdir = $(datadir)/applications
-#desktop_DATA = fotoprint.desktop
+desktopdir = $(datadir)/applications
+desktop_DATA = camcardsync.desktop
 
-#icondir = $(datadir)/icons/hicolor/48x48/apps/
-#icon_DATA = fotoprint.png
+icondir = $(datadir)/icons/hicolor/48x48/apps
+icon_DATA = camcardsync.png
 
 
 EXTRA_DIST = COPYING README TODO NEWS

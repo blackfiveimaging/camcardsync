@@ -1,14 +1,11 @@
 
-Need to create some heuristic for automatically checking checkboxes based on whether
-a target directory of the appropriate name already exists.
-Perhaps better would be to scan the target directory if it exists and check whether any of
-the files within that session already exist - if so, assume that these files have been
-transferred and sorted, and some deleted.  If none of the files in that session exist,
-assume that photos for that date came from another card, so this one should be synced.
+| Need to create some heuristic for automatically checking checkboxes based on whether
+| a target directory of the appropriate name already exists.
+| Perhaps better would be to scan the target directory if it exists and check whether any of
+| the files within that session already exist - if so, assume that these files have been
+| transferred and sorted, and some deleted.  If none of the files in that session exist,
+| assume that photos for that date came from another card, so this one should be synced.
 
-
-
-Need a utility to ease the transfer of images from a camera card to a hard-drive directory.
 
 Need the following features:
 

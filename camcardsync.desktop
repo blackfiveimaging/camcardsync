@@ -1,0 +1,16 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=CamCardSync
+Name[en_GB]=CamCardSync
+GenericName=Photo Importer
+GenericName[en_GB]=Photo Importer
+Comment=Selectively copy photos from a camera card to your computer
+Comment[en_GB]=Selectively copy photos from a camera card to your computer
+Exec=camcardsync
+Icon=camcardsync
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Graphics;Photography;GNOME;GTK;
+
