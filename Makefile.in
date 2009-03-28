@@ -294,9 +294,9 @@ camcardsync_LDADD = \
 
 desktopdir = $(datadir)/applications
 desktop_DATA = camcardsync.desktop
-icondir = $(datadir)/icons/hicolor/48x48/apps/
+icondir = $(datadir)/icons/hicolor/48x48/apps
 icon_DATA = camcardsync.png
-EXTRA_DIST = COPYING README TODO NEWS
+EXTRA_DIST = camcardsync.desktop camcardsync.png COPYING README TODO NEWS
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 

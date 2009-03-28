@@ -8,7 +8,8 @@
  *
  */
 
-
+#include <cstdlib>
+#include <cstring>
 #include <iostream>
 
 #include <gtk/gtk.h>
@@ -20,6 +21,14 @@
 
 #include "progressbar.h"
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
+#include "gettext.h"
+#define _(x) gettext(x)
+#define N_(x) gettext_noop(x)
+
 using namespace std;
 
 
@@ -30,7 +39,7 @@ void ProgressBar::cancel_callback(GtkWidget *wid,gpointer *ob)
 }
 
 
-ProgressBar::ProgressBar(const char *message,bool cancel,GtkWidget *parent)
+ProgressBar::ProgressBar(const char *message,bool cancel,GtkWidget *parent,bool modal)
 	: Progress(), message(NULL), label(NULL), cancelled(false)
 {
 	if(message)
@@ -38,8 +47,9 @@ ProgressBar::ProgressBar(const char *message,bool cancel,GtkWidget *parent)
 	window=gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	if(parent)
 		gtk_window_set_transient_for(GTK_WINDOW(window),GTK_WINDOW(parent));
-	gtk_window_set_title(GTK_WINDOW(window),"Progress...");
-	gtk_window_set_default_size(GTK_WINDOW(window),10,10);
+	gtk_window_set_modal(GTK_WINDOW(window),modal);
+	gtk_window_set_title(GTK_WINDOW(window),_("Progress..."));
+	gtk_window_set_default_size(GTK_WINDOW(window),150,30);
 	gtk_widget_show(window);
 	gtk_container_set_border_width(GTK_CONTAINER(window),10);
 
@@ -50,6 +60,7 @@ ProgressBar::ProgressBar(const char *message,bool cancel,GtkWidget *parent)
 	if(this->message)
 	{
 		label=gtk_label_new(this->message);
+		gtk_label_set_justify(GTK_LABEL(label),GTK_JUSTIFY_CENTER);
 		gtk_box_pack_start(GTK_BOX(vbox),label,FALSE,FALSE,0);
 		gtk_widget_show(label);
 	}
@@ -92,7 +103,7 @@ bool ProgressBar::DoProgress(int i,int maxi)
 		gtk_progress_bar_pulse(GTK_PROGRESS_BAR(progressbar));
 
 	while(gtk_events_pending())
-		gtk_main_iteration();
+		gtk_main_iteration_do(false);
 
 	if(cancelled)
 		return(false);

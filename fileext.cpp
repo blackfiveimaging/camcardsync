@@ -1,5 +1,6 @@
 #include <iostream>
-#include <string>
+#include <string.h>
+#include <stdlib.h>
 #include "fileext.h"
 
 using namespace std;

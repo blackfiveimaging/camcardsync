@@ -49,5 +49,5 @@ icondir = $(datadir)/icons/hicolor/48x48/apps
 icon_DATA = camcardsync.png
 
 
-EXTRA_DIST = COPYING README TODO NEWS
+EXTRA_DIST = camcardsync.desktop camcardsync.png COPYING README TODO NEWS
 

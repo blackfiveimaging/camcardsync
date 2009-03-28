@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: camcardsync 0.1.1\n"
 "Report-Msgid-Bugs-To: blackfive@fakenhamweb.co.uk\n"
-"POT-Creation-Date: 2009-03-23 22:46+0000\n"
+"POT-Creation-Date: 2009-03-28 18:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,15 +16,15 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: fileexteditor.cpp:16
+#: fileexteditor.cpp:17
 msgid "Click to edit"
 msgstr ""
 
-#: fileexteditor.cpp:135
+#: fileexteditor.cpp:136
 msgid "Add item"
 msgstr ""
 
-#: fileexteditor.cpp:140
+#: fileexteditor.cpp:141
 msgid "Remove item"
 msgstr ""
 
@@ -86,4 +86,8 @@ msgstr ""
 
 #: prefsdialog.cpp:57
 msgid "File Extension"
+msgstr ""
+
+#: progressbar.cpp:51
+msgid "Progress..."
 msgstr ""
