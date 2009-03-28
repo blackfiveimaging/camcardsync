@@ -162,7 +162,7 @@ void CamSessionList::SetIncludedDefaults(const char *destdir)
 
 bool CamSessionList::AddPath(const char *srcdir,Progress *p)
 {
-	cerr << "Processing directory " << srcdir << endl;
+//	cerr << "Processing directory " << srcdir << endl;
 	DIR *tld=opendir(srcdir);
 	if(tld)
 	{
@@ -202,26 +202,28 @@ bool CamSessionList::AddPath(const char *srcdir,Progress *p)
 						return(false);
 					}
 				}
-				else
-					cerr << "Excluding: " << de->d_name << endl;
+//				else
+//					cerr << "Excluding: " << de->d_name << endl;
 			}
 			else
 			{
 				if(MatchExtension(fullpath.c_str()))
 				{
 					AddFile(fullpath.c_str());
+#if 0
 					if(!p->DoProgress(0,0))
 					{
 						closedir(tld);
 						return(false);
 					}
+#endif
 				}
 			}
 			if(p)
 			{
 				static int c=0;
 				++c;
-				if((c&255)==0)
+				if((c&31)==0)
 				{
 					if(!p->DoProgress(0,0))
 					{
