@@ -13,5 +13,3 @@ Changes for 0.1.1
 	Useful if you wish to set the CamCardSync source directory to /media
 	but exclude CD rom drives, etc.
 
-*	Now only the most recently shot session will be checked by default.
-
