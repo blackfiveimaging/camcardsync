@@ -61,7 +61,7 @@ am_camcardsync_OBJECTS = camcardsync.$(OBJEXT) camsession.$(OBJEXT) \
 	configdb.$(OBJEXT) fileext.$(OBJEXT) exclusions.$(OBJEXT) \
 	fileexteditor.$(OBJEXT) halgetmountpoint.$(OBJEXT) \
 	imagefile.$(OBJEXT) mainwindow.$(OBJEXT) pathsupport.$(OBJEXT) \
-	prefsdialog.$(OBJEXT) progressbar.$(OBJEXT)
+	prefsdialog.$(OBJEXT) progressbar.$(OBJEXT) debug.$(OBJEXT)
 camcardsync_OBJECTS = $(am_camcardsync_OBJECTS)
 am__DEPENDENCIES_1 =
 camcardsync_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
@@ -288,6 +288,7 @@ camcardsync_SOURCES = \
 	progresstext.h \
 	progressbar.cpp	\
 	progressbar.h \
+	debug.cpp \
 	debug.h
 
 camcardsync_LDADD = \
@@ -394,6 +395,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/camcardsync.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/camsession.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/configdb.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/debug.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/exclusions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fileext.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fileexteditor.Po@am__quote@

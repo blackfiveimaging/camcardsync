@@ -37,6 +37,7 @@ camcardsync_SOURCES = 		\
 	progresstext.h \
 	progressbar.cpp	\
 	progressbar.h \
+	debug.cpp \
 	debug.h
 
 camcardsync_LDADD = \
