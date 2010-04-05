@@ -287,7 +287,8 @@ camcardsync_SOURCES = \
 	progress.h	\
 	progresstext.h \
 	progressbar.cpp	\
-	progressbar.h
+	progressbar.h \
+	debug.h
 
 camcardsync_LDADD = \
 	$(LIBINTL) $(LIBM_LIBS) $(GETOPT_LIBS) $(JPEG_LIBS) $(PNM_LIBS) $(TIFF_LIBS) $(LCMS_LIBS) $(GTK2_LIBS) $(HAL_LIBS)

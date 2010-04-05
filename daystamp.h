@@ -1,8 +1,9 @@
 #ifndef DAYSTAMP_H
 #define DAYSTAMP_H
 
-#include <stdlib.h>
-#include <string.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 #include <sys/stat.h>
 #include <sys/types.h>
 

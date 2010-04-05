@@ -1,4 +1,6 @@
 
+URGENT: Add sensible handling of out-of-space error
+
 | Need to create some heuristic for automatically checking checkboxes based on whether
 | a target directory of the appropriate name already exists.
 | Perhaps better would be to scan the target directory if it exists and check whether any of
