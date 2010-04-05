@@ -31,6 +31,7 @@ camcardsync_SOURCES = 		\
 	mainwindow.h	\
 	pathsupport.cpp	\
 	pathsupport.h	\
+	searchpath.h \
 	prefsdialog.cpp	\
 	prefsdialog.h	\
 	progress.h	\
